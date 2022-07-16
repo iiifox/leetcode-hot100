@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh_CN" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://iiifox.github.io/leetcode-hot100/10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>「力扣」第 10 题：正则表达式匹配（中等） - LeetCode 热题 HOT 100</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u300c\u529b\u6263\u300d\u7b2c 10 \u9898\uff1a\u6b63\u5219\u8868\u8fbe\u5f0f\u5339\u914d\uff08\u4e2d\u7b49\uff09";
+        var mkdocs_page_input_path = "10. \u6b63\u5219\u8868\u8fbe\u5f0f\u5339\u914d.md";
+        var mkdocs_page_url = "/leetcode-hot100/10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LeetCode 热题 HOT 100
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">2. 两数相加</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">3. 无重复字符的最长子串</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">「力扣」第 4 题：寻找两个正序数组的中位数（困难）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">5. 最长回文子串</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">「力扣」第 10 题：正则表达式匹配（中等）</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">动态规划</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LeetCode 热题 HOT 100</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>「力扣」第 10 题：正则表达式匹配（中等）</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="10">「力扣」第 10 题：正则表达式匹配</h3>
+<ul>
+<li><a href="https://leetcode.cn/problems/regular-expression-matching/">链接</a></li>
+</ul>
+<p>给你一个字符串&nbsp;<code>s</code>&nbsp;和一个字符规律&nbsp;<code>p</code>，请你来实现一个支持 <code>'.'</code>&nbsp;和&nbsp;<code>'*'</code>&nbsp;的正则表达式匹配。</p>
+
+<ul>
+    <li><code>'.'</code> 匹配任意单个字符</li>
+    <li><code>'*'</code> 匹配零个或多个前面的那一个元素</li>
+</ul>
+
+<p>所谓匹配，是要涵盖&nbsp;<strong>整个&nbsp;</strong>字符串&nbsp;<code>s</code>的，而不是部分字符串。</p>
+
+<p>&nbsp;</p>
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>s = "aa", p = "a"
+<strong>输出：</strong>false
+<strong>解释：</strong>"a" 无法匹配 "aa" 整个字符串。
+</pre>
+
+<p><strong>示例 2:</strong></p>
+
+<pre>
+<strong>输入：</strong>s = "aa", p = "a*"
+<strong>输出：</strong>true
+<strong>解释：</strong>因为 '*' 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 'a'。因此，字符串 "aa" 可被视为 'a' 重复了一次。
+</pre>
+
+<p><strong>示例&nbsp;3：</strong></p>
+
+<pre>
+<strong>输入：</strong>s = "ab", p = ".*"
+<strong>输出：</strong>true
+<strong>解释：</strong>".*" 表示可匹配零个或多个（'*'）任意字符（'.'）。
+</pre>
+
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+    <li><code>1 &lt;= s.length&nbsp;&lt;= 20</code></li>
+    <li><code>1 &lt;= p.length&nbsp;&lt;= 30</code></li>
+    <li><code>s</code>&nbsp;只包含从&nbsp;<code>a-z</code>&nbsp;的小写字母。</li>
+    <li><code>p</code>&nbsp;只包含从&nbsp;<code>a-z</code>&nbsp;的小写字母，以及字符&nbsp;<code>.</code>&nbsp;和&nbsp;<code>*</code>。</li>
+    <li>保证每次出现字符&nbsp;<code>*</code> 时，前面都匹配到有效的字符</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h4 id="_1">动态规划</h4>
+<blockquote>
+<p>时间复杂度：O(mn)</p>
+<p>空间复杂度：O(mn)</p>
+</blockquote>
+<pre><code class="language-java">public class Solution {
+    public boolean isMatch(String s, String p) {
+        // dp[i][j] 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
+        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
+        dp[0][0] = true;
+
+        //  i 从 0 开始是让 '.*' 等等可以匹配 ''
+        for (int i = 0; i &lt; dp.length; i++) {
+            for (int j = 1; j &lt; dp[i].length; j++) {
+                if (p.charAt(j - 1) == '*') {
+                    // 此时将 p 中的第 j - 1 个和第 j 个字符看做一个组合，有以下两种情况：
+                    // 1、匹配字符 s 的第 i 个字符
+                    if (matches(s, p, i, j - 1)) {
+                        // 注意：即使能够匹配，也有可能匹配零次，比如 s=&quot;aaa&quot; p=&quot;ab*a*c*a&quot;
+                        // 故需要将该字符扔掉而后继续进行匹配 or 将该组合扔掉而后不再进行匹配
+                        dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
+                    } else {
+                        // 2、不匹配字符 s 的第 i 个字符，将该组合扔掉，不再进行匹配
+                        dp[i][j] = dp[i][j - 2];
+                    }
+                } else if (matches(s, p, i, j)) {
+                    // s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且相等
+                    // 或者 p 中的第 j 个字符为 '.'，直接看各自前一个字符就行
+                    dp[i][j] = dp[i - 1][j - 1];
+                }
+                // 剩下的情况就是 s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且不相等
+            }
+        }
+        return dp[s.length()][p.length()];
+    }
+
+    /**
+     * 判断 s 的第 i 个字符与 p 中的第 j 个字符是否相等
+     */
+    private boolean matches(String s, String p, int i, int j) {
+        if (i == 0) {
+            return false;
+        }
+        return p.charAt(j - 1) == s.charAt(i - 1) || p.charAt(j - 1) == '.';
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="btn btn-neutral float-left" title="5. 最长回文子串"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

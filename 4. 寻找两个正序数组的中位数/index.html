@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh_CN" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://iiifox.github.io/leetcode-hot100/4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>「力扣」第 4 题：寻找两个正序数组的中位数（困难） - LeetCode 热题 HOT 100</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u300c\u529b\u6263\u300d\u7b2c 4 \u9898\uff1a\u5bfb\u627e\u4e24\u4e2a\u6b63\u5e8f\u6570\u7ec4\u7684\u4e2d\u4f4d\u6570\uff08\u56f0\u96be\uff09";
+        var mkdocs_page_input_path = "4. \u5bfb\u627e\u4e24\u4e2a\u6b63\u5e8f\u6570\u7ec4\u7684\u4e2d\u4f4d\u6570.md";
+        var mkdocs_page_url = "/leetcode-hot100/4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LeetCode 热题 HOT 100
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">2. 两数相加</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/">3. 无重复字符的最长子串</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">「力扣」第 4 题：寻找两个正序数组的中位数（困难）</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">分析：</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">二分查找：在循环体内部排除元素</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">5. 最长回文子串</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">「力扣」第 10 题：正则表达式匹配（中等）</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LeetCode 热题 HOT 100</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>「力扣」第 4 题：寻找两个正序数组的中位数（困难）</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="4">「力扣」第 4 题：寻找两个正序数组的中位数</h3>
+<ul>
+<li><a href="https://leetcode.cn/problems/median-of-two-sorted-arrays">链接</a></li>
+</ul>
+<p>给定两个大小分别为 <code>m</code> 和 <code>n</code> 的正序（从小到大）数组&nbsp;<code>nums1</code> 和&nbsp;<code>nums2</code>。请你找出并返回这两个正序数组的 <strong>中位数</strong> 。</p>
+
+<p>算法的时间复杂度应该为 <code>O(log (m+n))</code> 。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例 1：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums1 = [1,3], nums2 = [2]
+<strong>输出：</strong>2.00000
+<strong>解释：</strong>合并数组 = [1,2,3] ，中位数 2
+</pre>
+
+<p><strong>示例 2：</strong></p>
+
+<pre>
+<strong>输入：</strong>nums1 = [1,2], nums2 = [3,4]
+<strong>输出：</strong>2.50000
+<strong>解释：</strong>合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
+</pre>
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+    <li><code>nums1.length == m</code></li>
+    <li><code>nums2.length == n</code></li>
+    <li><code>0 &lt;= m &lt;= 1000</code></li>
+    <li><code>0 &lt;= n &lt;= 1000</code></li>
+    <li><code>1 &lt;= m + n &lt;= 2000</code></li>
+    <li><code>-10<sup>6</sup> &lt;= nums1[i], nums2[i] &lt;= 10<sup>6</sup></code></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="_1">分析：</h4>
+<p>在两个有序数组中间画一条红线，这条红线满足如下条件：</p>
+<ul>
+<li>条件①：红线左边所有的数都小于等于红线右边所有的数；</li>
+<li>条件②：size(左) = size(右) 或 size(左) = size(右) + 1</li>
+</ul>
+<p>记 m = nums1.length, n = nums2.length</p>
+<ul>
+<li>m + n 为奇数：size(左) = size(右) + 1，中位数即红线左边最大值</li>
+<li>m + n 为偶数：中位数即红线左边最大值与右边最小值的均值</li>
+</ul>
+<p>我们记：</p>
+<ul>
+<li>数组 nums1 在红线右边的第 1 个数的索引为 i</li>
+<li>数组 nums2 在红线右边的第 1 个数的索引为 j</li>
+</ul>
+<p>此时恒有 <code>size(左) = i + j = (m + n + 1) &gt;&gt;&gt; 1</code></p>
+<p>此时问题转化为在区间 [0, m] 中寻找索引 i，使得条件①和②成立</p>
+<h4 id="_2">二分查找：在循环体内部排除元素</h4>
+<blockquote>
+<p>时间复杂度：O(log(min(m,n)))</p>
+<p>空间复杂度：O(1)</p>
+</blockquote>
+<pre><code class="language-java">public class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        // 为了让搜索范围更小，我们始终让 num1 是那个更短的数组
+        if (nums1.length &gt; nums2.length) {
+            int[] temp = nums1;
+            nums1 = nums2;
+            nums2 = temp;
+        }
+
+        // 上述交换保证了 m &lt;= n，在更短的区间 [0, m] 中搜索，会更快一些
+        int m = nums1.length;
+        int n = nums2.length;
+
+        // 使用二分查找在区间 [left, right] 中寻找索引 i，使得条件①和②成立
+        int left = 0;
+        int right = m;
+        // size(左)，可通过该数求得 j = totalLeft - i;
+        int totalLeft = (m + n + 1) &gt;&gt;&gt; 1;
+        while (left &lt; right) {
+            // 下面的 if 中左指针右移，故而需要向下取整
+            int i = (left + right) &gt;&gt;&gt; 1;
+            int j = totalLeft - i;
+            // nums2 左边的最大值比 nums1 右边的最小值要大，说明 i 需要扩大
+            if (nums2[j - 1] &gt; nums1[i]) {
+                left = i + 1;
+            } else {
+                // 左边的最大值小于等于 nums1 右边的最小值，因此 i 不需要扩大
+                right = i;
+            }
+        }
+
+        // 退出循环时的 i = (left = right) 即为满足条件①和②的 i
+        int i = left;
+        int j = totalLeft - i;
+
+        // 边界情况需要特殊考虑
+        int nums1LeftMax = (i == 0) ? Integer.MIN_VALUE : nums1[i - 1];
+        int nums1RightMin = (i == m) ? Integer.MAX_VALUE : nums1[i];
+        int nums2LeftMax = (j == 0) ? Integer.MIN_VALUE : nums2[j - 1];
+        int nums2RightMin = (j == n) ? Integer.MAX_VALUE : nums2[j];
+
+        return (((m + n) &amp; 1) == 1) ?
+                Math.max(nums1LeftMax, nums2LeftMax) :
+                (double) (Math.max(nums1LeftMax, nums2LeftMax) +
+        Math.min(nums1RightMin, nums2RightMin)) / 2;
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" class="btn btn-neutral float-left" title="3. 无重复字符的最长子串"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" class="btn btn-neutral float-right" title="5. 最长回文子串">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

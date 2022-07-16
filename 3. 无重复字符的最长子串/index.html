@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh_CN" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://iiifox.github.io/leetcode-hot100/3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>3. 无重复字符的最长子串 - LeetCode 热题 HOT 100</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "3. \u65e0\u91cd\u590d\u5b57\u7b26\u7684\u6700\u957f\u5b50\u4e32";
+        var mkdocs_page_input_path = "3. \u65e0\u91cd\u590d\u5b57\u7b26\u7684\u6700\u957f\u5b50\u4e32.md";
+        var mkdocs_page_url = "/leetcode-hot100/3.%20%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> LeetCode 热题 HOT 100
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">2. 两数相加</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">3. 无重复字符的最长子串</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">滑动窗口</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">「力扣」第 4 题：寻找两个正序数组的中位数（困难）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../5.%20%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2/">5. 最长回文子串</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">「力扣」第 10 题：正则表达式匹配（中等）</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">LeetCode 热题 HOT 100</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>3. 无重复字符的最长子串</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h3 id="3">「力扣」第 3 题：无重复字符的最长子串</h3>
+<ul>
+<li><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">链接</a></li>
+</ul>
+<p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的&nbsp;<strong>最长子串&nbsp;</strong>的长度。</p>
+
+<p>&nbsp;</p>
+
+<p><strong>示例&nbsp;1:</strong></p>
+
+<pre>
+<strong>输入: </strong>s = "abcabcbb"
+<strong>输出: </strong>3 
+<strong>解释:</strong> 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+</pre>
+
+<p><strong>示例 2:</strong></p>
+
+<pre>
+<strong>输入: </strong>s = "bbbbb"
+<strong>输出: </strong>1
+<strong>解释: </strong>因为无重复字符的最长子串是 "b"，所以其长度为 1。
+</pre>
+
+<p><strong>示例 3:</strong></p>
+
+<pre>
+<strong>输入: </strong>s = "pwwkew"
+<strong>输出: </strong>3
+<strong>解释: </strong>因为无重复字符的最长子串是&nbsp;"wke"，所以其长度为 3。
+&nbsp;    请注意，你的答案必须是 <strong>子串 </strong>的长度，"pwke"&nbsp;是一个子序列，不是子串。
+</pre>
+<p>&nbsp;</p>
+
+<p><strong>提示：</strong></p>
+
+<ul>
+    <li><code>0 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>
+    <li><code>s</code>&nbsp;由英文字母、数字、符号和空格组成</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4 id="_1">滑动窗口</h4>
+<p><strong>方法一：</strong></p>
+<p>这个方法并没有击败 <code>100%</code>，写这里是方便理解，方法二利用空间换了一些时间提高了运行效率才击败 <code>100%</code></p>
+<blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(1)</p>
+</blockquote>
+<pre><code class="language-java">public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int len = s.length();
+        if (len &lt; 2) {
+            return len;
+        }
+
+        // key：字符，value：最新的下标
+        Map&lt;Character, Integer&gt; map = new HashMap&lt;&gt;();
+
+        int res = 0;
+        // [left, right] 中无重复的元素
+        for (int left = 0, right = 0; right &lt; len; right++) {
+            Character c = s.charAt(right);
+            if (map.containsKey(c)) {
+                // 如果当前字符在 map 中出现过，看存储的下标是否大于 left
+                left = Math.max(left, map.get(c) + 1);
+            }
+            map.put(c, right);
+            res = Math.max(res, right - left + 1);
+        }
+        return res;
+    }
+}
+</code></pre>
+<p><strong>方法二：</strong></p>
+<blockquote>
+<p>时间复杂度：O(n)</p>
+<p>空间复杂度：O(n)</p>
+</blockquote>
+<pre><code class="language-java">public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int len = s.length();
+        if (len &lt; 2) {
+            return len;
+        }
+
+        // 由于 s.charAt(i) 操作会去检查下标是否越界，因此
+        // 在 Java 里，将字符串转换成字符数组是常见的操作
+        char[] chars = s.toCharArray();
+
+        // 窗口数组，用来代替 HashMap，提高运行效率
+        // windows[i] 存储的是 chars 中字符值为 i 的最新索引
+        int[] window = new int[128];
+        for (int i = 0; i &lt; 128; i++) {
+            window[i] = -1;
+        }
+
+        int res = 0;
+        // chars 在 [left, right] 中没有重复元素
+        for (int left = 0, right = 0; right &lt; len; right++) {
+            // 字符值为 chars[right] 在前面出现过了，
+            // 前一次出现的索引是否在 [left, right] 中决定是否进行窗口滑动
+            if (window[chars[right]] != -1) {
+                left = Math.max(left, window[chars[right]] + 1);
+            }
+            // 更新一下字符值为 chars[right] 的最新索引
+            window[chars[right]] = right;
+            // 计算 [left, right] 区间长度，决定是否更新 res
+            res = Math.max(res, right - left + 1);
+        }
+        return res;
+    }
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="btn btn-neutral float-left" title="2. 两数相加"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="btn btn-neutral float-right" title="「力扣」第 4 题：寻找两个正序数组的中位数（困难）">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
