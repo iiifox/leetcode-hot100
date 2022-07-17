@@ -41,10 +41,6 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../LeetCode.md">None</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -138,41 +134,41 @@
 <p>&nbsp;</p>
 
 <h3 id="_2">参考代码</h3>
-<pre><code class="language-java">public class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        int len = s.length();
-        if (len &lt; 2) {
-            return len;
-        }
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        // 由于 s.charAt(i) 操作会去检查下标是否越界，因此
-        // 在 Java 里，将字符串转换成字符数组是常见的操作
-        char[] chars = s.toCharArray();
+<span class="w">        </span><span class="c1">// 由于 s.charAt(i) 操作会去检查下标是否越界，因此</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 在 Java 里，将字符串转换成字符数组是常见的操作</span><span class="w"></span>
+<span class="w">        </span><span class="kt">char</span><span class="o">[]</span><span class="w"> </span><span class="n">chars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span><span class="w"></span>
 
-        // 窗口数组，用来代替 HashMap，提高运行效率
-        // windows[i] 存储的是 chars 中字符值为 i 的最新索引
-        int[] window = new int[128];
-        for (int i = 0; i &lt; 128; i++) {
-            window[i] = -1;
-        }
+<span class="w">        </span><span class="c1">// 窗口数组，用来代替 HashMap，提高运行效率</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// windows[i] 存储的是 chars 中字符值为 i 的最新索引</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">128</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">128</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">window</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        int res = 0;
-        // chars 在 [left, right] 中没有重复元素
-        for (int left = 0, right = 0; right &lt; len; right++) {
-            // 字符值为 chars[right] 在前面出现过了，
-            // 前一次出现的索引是否在 [left, right] 中决定是否进行窗口滑动
-            if (window[chars[right]] != -1) {
-                left = Math.max(left, window[chars[right]] + 1);
-            }
-            // 更新一下字符值为 chars[right] 的最新索引
-            window[chars[right]] = right;
-            // 计算 [left, right] 区间长度，决定是否更新 res
-            res = Math.max(res, right - left + 1);
-        }
-        return res;
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// chars 在 [left, right] 中没有重复元素</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 字符值为 chars[right] 在前面出现过了，</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 前一次出现的索引是否在 [left, right] 中决定是否进行窗口滑动</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">window</span><span class="o">[</span><span class="n">chars</span><span class="o">[</span><span class="n">right</span><span class="o">]]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">window</span><span class="o">[</span><span class="n">chars</span><span class="o">[</span><span class="n">right</span><span class="o">]]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 更新一下字符值为 chars[right] 的最新索引</span><span class="w"></span>
+<span class="w">            </span><span class="n">window</span><span class="o">[</span><span class="n">chars</span><span class="o">[</span><span class="n">right</span><span class="o">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 计算 [left, right] 区间长度，决定是否更新 res</span><span class="w"></span>
+<span class="w">            </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
               
             </div>
           </div><footer>
@@ -211,6 +207,9 @@
     <script>var base_url = '..';</script>
     <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
+      <script src="../javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

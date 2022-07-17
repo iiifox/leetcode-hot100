@@ -41,10 +41,6 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../LeetCode.md">None</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -159,54 +155,54 @@
 <p>&nbsp;</p>
 
 <h3 id="_3">参考代码</h3>
-<pre><code class="language-java">public class Solution {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        // 为了让搜索范围更小，我们始终让 num1 是那个更短的数组
-        if (nums1.length &gt; nums2.length) {
-            int[] temp = nums1;
-            nums1 = nums2;
-            nums2 = temp;
-        }
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">findMedianSortedArrays</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 为了让搜索范围更小，我们始终让 num1 是那个更短的数组</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nums1</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums2</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">nums1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums2</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">nums2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        // 上述交换保证了 m &lt;= n，在更短的区间 [0, m] 中搜索，会更快一些
-        int m = nums1.length;
-        int n = nums2.length;
+<span class="w">        </span><span class="c1">// 上述交换保证了 m &lt;= n，在更短的区间 [0, m] 中搜索，会更快一些</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums1</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums2</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"></span>
 
-        // 使用二分查找在区间 [left, right] 中寻找索引 i，使得条件①和②成立
-        int left = 0;
-        int right = m;
-        // size(左)，可通过该数求得 j = totalLeft - i;
-        int totalLeft = (m + n + 1) &gt;&gt;&gt; 1;
-        while (left &lt; right) {
-            // 下面的 if 中左指针右移，故而需要向下取整
-            int i = (left + right) &gt;&gt;&gt; 1;
-            int j = totalLeft - i;
-            // nums2 左边的最大值比 nums1 右边的最小值要大，说明 i 需要扩大
-            if (nums2[j - 1] &gt; nums1[i]) {
-                left = i + 1;
-            } else {
-                // 左边的最大值小于等于 nums1 右边的最小值，因此 i 不需要扩大
-                right = i;
-            }
-        }
+<span class="w">        </span><span class="c1">// 使用二分查找在区间 [left, right] 中寻找索引 i，使得条件①和②成立</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// size(左)，可通过该数求得 j = totalLeft - i;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">totalLeft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// 下面的 if 中左指针右移，故而需要向下取整</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">totalLeft</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// nums2 左边的最大值比 nums1 右边的最小值要大，说明 i 需要扩大</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nums2</span><span class="o">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// 左边的最大值小于等于 nums1 右边的最小值，因此 i 不需要扩大</span><span class="w"></span>
+<span class="w">                </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        // 退出循环时的 i = (left = right) 即为满足条件①和②的 i
-        int i = left;
-        int j = totalLeft - i;
+<span class="w">        </span><span class="c1">// 退出循环时的 i = (left = right) 即为满足条件①和②的 i</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">totalLeft</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
 
-        // 边界情况需要特殊考虑
-        int nums1LeftMax = (i == 0) ? Integer.MIN_VALUE : nums1[i - 1];
-        int nums1RightMin = (i == m) ? Integer.MAX_VALUE : nums1[i];
-        int nums2LeftMax = (j == 0) ? Integer.MIN_VALUE : nums2[j - 1];
-        int nums2RightMin = (j == n) ? Integer.MAX_VALUE : nums2[j];
+<span class="w">        </span><span class="c1">// 边界情况需要特殊考虑</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">nums1LeftMax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums1</span><span class="o">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">nums1RightMin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums1</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">nums2LeftMax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums2</span><span class="o">[</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">nums2RightMin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">nums2</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
 
-        return (((m + n) &amp; 1) == 1) ?
-                Math.max(nums1LeftMax, nums2LeftMax) :
-                (double) (Math.max(nums1LeftMax, nums2LeftMax) +
-        Math.min(nums1RightMin, nums2RightMin)) / 2;
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(((</span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"></span>
+<span class="w">                </span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">nums1LeftMax</span><span class="p">,</span><span class="w"> </span><span class="n">nums2LeftMax</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">nums1LeftMax</span><span class="p">,</span><span class="w"> </span><span class="n">nums2LeftMax</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
+<span class="w">        </span><span class="n">Math</span><span class="p">.</span><span class="na">min</span><span class="p">(</span><span class="n">nums1RightMin</span><span class="p">,</span><span class="w"> </span><span class="n">nums2RightMin</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
               
             </div>
           </div><footer>
@@ -245,6 +241,9 @@
     <script>var base_url = '..';</script>
     <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
+      <script src="../javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

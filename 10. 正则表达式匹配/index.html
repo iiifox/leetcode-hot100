@@ -41,10 +41,6 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../LeetCode.md">None</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -148,48 +144,48 @@
 <p>&nbsp;</p>
 
 <h3 id="_2">参考代码</h3>
-<pre><code class="language-java">public class Solution {
-    public boolean isMatch(String s, String p) {
-        // dp[i][j] 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
-        boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
-        dp[0][0] = true;
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isMatch</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// dp[i][j] 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配</span><span class="w"></span>
+<span class="w">        </span><span class="kt">boolean</span><span class="o">[][]</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">][</span><span class="n">p</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">dp</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
 
-        // i 从 0 开始是让 '.*'、'a*' 等可以匹配 ''
-        for (int i = 0; i &lt; dp.length; i++) {
-            for (int j = 1; j &lt; dp[i].length; j++) {
-                if (p.charAt(j - 1) == '*') {
-                    // 此时将 p 中的第 j - 1 个和第 j 个字符看做一个组合，有以下两种情况：
-                    // 1、匹配字符 s 的第 i 个字符
-                    if (matches(s, p, i, j - 1)) {
-                        // 注意：即使能够匹配，也有可能匹配零次，比如 s=&quot;aaa&quot; p=&quot;ab*a*c*a&quot;
-                        // 需要将该字符扔掉而后继续进行匹配 or 将该组合扔掉而后不再进行匹配
-                        dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
-                    } else {
-                        // 2、不匹配字符 s 的第 i 个字符，将该组合扔掉，不再进行匹配
-                        dp[i][j] = dp[i][j - 2];
-                    }
-                } else if (matches(s, p, i, j)) {
-                    // s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且相等
-                    // 或者 p 中的第 j 个字符为 '.'，直接看各自前一个字符就行
-                    dp[i][j] = dp[i - 1][j - 1];
-                }
-                // 剩下的情况就是 s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且不相等
-            }
-        }
-        return dp[s.length()][p.length()];
-    }
+<span class="w">        </span><span class="c1">// i 从 0 开始是让 &#39;.*&#39;、&#39;a*&#39; 等可以匹配 &#39;&#39;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dp</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;*&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// 此时将 p 中的第 j - 1 个和第 j 个字符看做一个组合，有以下两种情况：</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// 1、匹配字符 s 的第 i 个字符</span><span class="w"></span>
+<span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// 注意：即使能够匹配，也有可能匹配零次，比如 s=&quot;aaa&quot; p=&quot;ab*a*c*a&quot;</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// 需要将该字符扔掉而后继续进行匹配 or 将该组合扔掉而后不再进行匹配</span><span class="w"></span>
+<span class="w">                        </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// 2、不匹配字符 s 的第 i 个字符，将该组合扔掉，不再进行匹配</span><span class="w"></span>
+<span class="w">                        </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">2</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">matches</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且相等</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// 或者 p 中的第 j 个字符为 &#39;.&#39;，直接看各自前一个字符就行</span><span class="w"></span>
+<span class="w">                    </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// 剩下的情况就是 s 的第 i 个字符与 p 中的第 j 个字符都为小写字母且不相等</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dp</span><span class="o">[</span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">][</span><span class="n">p</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="o">]</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    /**
-     * 判断 s 的第 i 个字符与 p 中的第 j 个字符是否相匹配
-     */
-    private boolean matches(String s, String p, int i, int j) {
-        if (i == 0) {
-            return false;
-        }
-        return p.charAt(j - 1) == s.charAt(i - 1) || p.charAt(j - 1) == '.';
-    }
-}
-</code></pre>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * 判断 s 的第 i 个字符与 p 中的第 j 个字符是否相匹配</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">matches</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;.&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
               
             </div>
           </div><footer>
@@ -225,6 +221,9 @@
     <script>var base_url = '..';</script>
     <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
+      <script src="../javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {

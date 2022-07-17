@@ -41,10 +41,6 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="" href="../LeetCode.md">None</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -111,7 +107,7 @@
 <p> </p>
 
 <p><strong>示例 1：</strong></p>
-<p><img alt="" src="img/addtwonumber1.jpg" style="width: 483px; height: 342px;" /></p>
+<p><img alt="" src="../img/addtwonumber1.jpg" style="width: 483px; height: 342px;" /></p>
 <pre>
 <strong>输入：</strong>l1 = [2,4,3], l2 = [5,6,4]
 <strong>输出：</strong>[7,0,8]
@@ -142,45 +138,45 @@
 <p>&nbsp;</p>
 
 <h3 id="_2">参考代码</h3>
-<pre><code class="language-java">/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-public class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        // 设置虚拟头结点（常用技巧）
-        ListNode dummy = new ListNode(-1);
-        ListNode cur = dummy;
-        int sum = 0;
+<div class="highlight"><pre><span></span><code><span class="cm">/**</span>
+<span class="cm"> * Definition for singly-linked list.</span>
+<span class="cm"> * public class ListNode {</span>
+<span class="cm"> *     int val;</span>
+<span class="cm"> *     ListNode next;</span>
+<span class="cm"> *     ListNode() {}</span>
+<span class="cm"> *     ListNode(int val) { this.val = val; }</span>
+<span class="cm"> *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }</span>
+<span class="cm"> * }</span>
+<span class="cm"> */</span><span class="w"></span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ListNode</span><span class="w"> </span><span class="nf">addTwoNumbers</span><span class="p">(</span><span class="n">ListNode</span><span class="w"> </span><span class="n">l1</span><span class="p">,</span><span class="w"> </span><span class="n">ListNode</span><span class="w"> </span><span class="n">l2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 设置虚拟头结点（常用技巧）</span><span class="w"></span>
+<span class="w">        </span><span class="n">ListNode</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ListNode</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">ListNode</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dummy</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-        // 两个链表有一个非空，求和就不会终止
-        while (l1 != null || l2 != null) {
-            if (l1 != null) {
-                sum += l1.val;
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                sum += l2.val;
-                l2 = l2.next;
-            }
-            cur.next = new ListNode(sum % 10);
-            sum /= 10;
-            cur = cur.next;
-        }
-        // 最后可能会进位，注意判断
-        if (sum == 1) {
-            cur.next = new ListNode(1);
-        }
-        return dummy.next;
-    }
-}
-</code></pre>
+<span class="w">        </span><span class="c1">// 两个链表有一个非空，求和就不会终止</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">l2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l1</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">l1</span><span class="p">.</span><span class="na">val</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">l1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l1</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="na">val</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">l2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l2</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="n">cur</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ListNode</span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">cur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cur</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// 最后可能会进位，注意判断</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">cur</span><span class="p">.</span><span class="na">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ListNode</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dummy</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
               
             </div>
           </div><footer>
@@ -219,6 +215,9 @@ public class Solution {
     <script>var base_url = '..';</script>
     <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
+      <script src="../javascripts/mathjax.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
       <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
