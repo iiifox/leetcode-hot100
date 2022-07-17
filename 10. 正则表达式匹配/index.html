@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://iiifox.github.io/leetcode-hot100/10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>「力扣」第 10 题：正则表达式匹配（中等） - LeetCode 热题 HOT 100</title>
+    <title>10. 正则表达式匹配 - LeetCode 热题 HOT 100</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "\u300c\u529b\u6263\u300d\u7b2c 10 \u9898\uff1a\u6b63\u5219\u8868\u8fbe\u5f0f\u5339\u914d\uff08\u4e2d\u7b49\uff09";
+        var mkdocs_page_name = "10. \u6b63\u5219\u8868\u8fbe\u5f0f\u5339\u914d";
         var mkdocs_page_input_path = "10. \u6b63\u5219\u8868\u8fbe\u5f0f\u5339\u914d.md";
         var mkdocs_page_url = "/leetcode-hot100/10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/";
       </script>
@@ -41,6 +41,10 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LeetCode/">LeetCode 热题 HOT 100</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -53,7 +57,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">「力扣」第 4 题：寻找两个正序数组的中位数（困难）</a>
+                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">4. 寻找两个正序数组的中位数</a>
                 </li>
               </ul>
               <ul>
@@ -61,9 +65,11 @@
                 </li>
               </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">「力扣」第 10 题：正则表达式匹配（中等）</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">10. 正则表达式匹配</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">动态规划</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">题目描述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">参考代码</a>
     </li>
     </ul>
                 </li>
@@ -81,7 +87,7 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>「力扣」第 10 题：正则表达式匹配（中等）</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>10. 正则表达式匹配</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -91,10 +97,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h3 id="10">「力扣」第 10 题：正则表达式匹配</h3>
+                <h2 id="10">「力扣」第 10 题：正则表达式匹配</h2>
 <ul>
 <li><a href="https://leetcode.cn/problems/regular-expression-matching/">链接</a></li>
 </ul>
+<h3 id="_1">题目描述</h3>
 <p>给你一个字符串&nbsp;<code>s</code>&nbsp;和一个字符规律&nbsp;<code>p</code>，请你来实现一个支持 <code>'.'</code>&nbsp;和&nbsp;<code>'*'</code>&nbsp;的正则表达式匹配。</p>
 
 <ul>
@@ -105,25 +112,21 @@
 <p>所谓匹配，是要涵盖&nbsp;<strong>整个&nbsp;</strong>字符串&nbsp;<code>s</code>的，而不是部分字符串。</p>
 
 <p>&nbsp;</p>
-<p><strong>示例 1：</strong></p>
 
-<pre>
+<pre><strong>示例 1：</strong>
 <strong>输入：</strong>s = "aa", p = "a"
 <strong>输出：</strong>false
 <strong>解释：</strong>"a" 无法匹配 "aa" 整个字符串。
 </pre>
 
-<p><strong>示例 2:</strong></p>
-
-<pre>
+<pre><strong>示例 2:</strong>
 <strong>输入：</strong>s = "aa", p = "a*"
 <strong>输出：</strong>true
-<strong>解释：</strong>因为 '*' 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 'a'。因此，字符串 "aa" 可被视为 'a' 重复了一次。
+<strong>解释：</strong>因为 '*' 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 'a'。
+    因此，字符串 "aa" 可被视为 'a' 重复了一次。
 </pre>
 
-<p><strong>示例&nbsp;3：</strong></p>
-
-<pre>
+<pre><strong>示例&nbsp;3：</strong>
 <strong>输入：</strong>s = "ab", p = ".*"
 <strong>输出：</strong>true
 <strong>解释：</strong>".*" 表示可匹配零个或多个（'*'）任意字符（'.'）。
@@ -132,7 +135,6 @@
 <p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
-
 <ul>
     <li><code>1 &lt;= s.length&nbsp;&lt;= 20</code></li>
     <li><code>1 &lt;= p.length&nbsp;&lt;= 30</code></li>
@@ -145,18 +147,14 @@
 
 <p>&nbsp;</p>
 
-<h4 id="_1">动态规划</h4>
-<blockquote>
-<p>时间复杂度：O(mn)</p>
-<p>空间复杂度：O(mn)</p>
-</blockquote>
+<h3 id="_2">参考代码</h3>
 <pre><code class="language-java">public class Solution {
     public boolean isMatch(String s, String p) {
         // dp[i][j] 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
         boolean[][] dp = new boolean[s.length() + 1][p.length() + 1];
         dp[0][0] = true;
 
-        //  i 从 0 开始是让 '.*' 等等可以匹配 ''
+        // i 从 0 开始是让 '.*'、'a*' 等可以匹配 ''
         for (int i = 0; i &lt; dp.length; i++) {
             for (int j = 1; j &lt; dp[i].length; j++) {
                 if (p.charAt(j - 1) == '*') {
@@ -164,7 +162,7 @@
                     // 1、匹配字符 s 的第 i 个字符
                     if (matches(s, p, i, j - 1)) {
                         // 注意：即使能够匹配，也有可能匹配零次，比如 s=&quot;aaa&quot; p=&quot;ab*a*c*a&quot;
-                        // 故需要将该字符扔掉而后继续进行匹配 or 将该组合扔掉而后不再进行匹配
+                        // 需要将该字符扔掉而后继续进行匹配 or 将该组合扔掉而后不再进行匹配
                         dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
                     } else {
                         // 2、不匹配字符 s 的第 i 个字符，将该组合扔掉，不再进行匹配
@@ -182,7 +180,7 @@
     }
 
     /**
-     * 判断 s 的第 i 个字符与 p 中的第 j 个字符是否相等
+     * 判断 s 的第 i 个字符与 p 中的第 j 个字符是否相匹配
      */
     private boolean matches(String s, String p, int i, int j) {
         if (i == 0) {

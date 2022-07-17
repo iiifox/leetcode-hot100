@@ -41,6 +41,10 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../LeetCode/">LeetCode 热题 HOT 100</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../1.%20%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">1. 两数之和</a>
                 </li>
               </ul>
@@ -51,13 +55,15 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">3. 无重复字符的最长子串</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#_1">滑动窗口</a>
+    <li class="toctree-l2"><a class="reference internal" href="#_1">题目描述</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">参考代码</a>
     </li>
     </ul>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">「力扣」第 4 题：寻找两个正序数组的中位数（困难）</a>
+                <li class="toctree-l1"><a class="reference internal" href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/">4. 寻找两个正序数组的中位数</a>
                 </li>
               </ul>
               <ul>
@@ -65,7 +71,7 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">「力扣」第 10 题：正则表达式匹配（中等）</a>
+                <li class="toctree-l1"><a class="reference internal" href="../10.%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/">10. 正则表达式匹配</a>
                 </li>
               </ul>
       </div>
@@ -91,42 +97,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h3 id="3">「力扣」第 3 题：无重复字符的最长子串</h3>
+                <h2 id="3">「力扣」第 3 题：无重复字符的最长子串</h2>
 <ul>
 <li><a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">链接</a></li>
 </ul>
+<h3 id="_1">题目描述</h3>
 <p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的&nbsp;<strong>最长子串&nbsp;</strong>的长度。</p>
 
 <p>&nbsp;</p>
 
-<p><strong>示例&nbsp;1:</strong></p>
-
-<pre>
+<pre><strong>示例&nbsp;1:</strong>
 <strong>输入: </strong>s = "abcabcbb"
 <strong>输出: </strong>3 
 <strong>解释:</strong> 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
 </pre>
 
-<p><strong>示例 2:</strong></p>
-
-<pre>
+<pre><strong>示例 2:</strong>
 <strong>输入: </strong>s = "bbbbb"
 <strong>输出: </strong>1
 <strong>解释: </strong>因为无重复字符的最长子串是 "b"，所以其长度为 1。
 </pre>
 
-<p><strong>示例 3:</strong></p>
-
-<pre>
+<pre><strong>示例 3:</strong>
 <strong>输入: </strong>s = "pwwkew"
 <strong>输出: </strong>3
 <strong>解释: </strong>因为无重复字符的最长子串是&nbsp;"wke"，所以其长度为 3。
 &nbsp;    请注意，你的答案必须是 <strong>子串 </strong>的长度，"pwke"&nbsp;是一个子序列，不是子串。
 </pre>
+
 <p>&nbsp;</p>
 
 <p><strong>提示：</strong></p>
-
 <ul>
     <li><code>0 &lt;= s.length &lt;= 5 * 10<sup>4</sup></code></li>
     <li><code>s</code>&nbsp;由英文字母、数字、符号和空格组成</li>
@@ -134,43 +135,9 @@
 
 <p>&nbsp;</p>
 
-<h4 id="_1">滑动窗口</h4>
-<p><strong>方法一：</strong></p>
-<p>这个方法并没有击败 <code>100%</code>，写这里是方便理解，方法二利用空间换了一些时间提高了运行效率才击败 <code>100%</code></p>
-<blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(1)</p>
-</blockquote>
-<pre><code class="language-java">public class Solution {
-    public int lengthOfLongestSubstring(String s) {
-        int len = s.length();
-        if (len &lt; 2) {
-            return len;
-        }
+<p>&nbsp;</p>
 
-        // key：字符，value：最新的下标
-        Map&lt;Character, Integer&gt; map = new HashMap&lt;&gt;();
-
-        int res = 0;
-        // [left, right] 中无重复的元素
-        for (int left = 0, right = 0; right &lt; len; right++) {
-            Character c = s.charAt(right);
-            if (map.containsKey(c)) {
-                // 如果当前字符在 map 中出现过，看存储的下标是否大于 left
-                left = Math.max(left, map.get(c) + 1);
-            }
-            map.put(c, right);
-            res = Math.max(res, right - left + 1);
-        }
-        return res;
-    }
-}
-</code></pre>
-<p><strong>方法二：</strong></p>
-<blockquote>
-<p>时间复杂度：O(n)</p>
-<p>空间复杂度：O(n)</p>
-</blockquote>
+<h3 id="_2">参考代码</h3>
 <pre><code class="language-java">public class Solution {
     public int lengthOfLongestSubstring(String s) {
         int len = s.length();
@@ -211,7 +178,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../2.%20%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="btn btn-neutral float-left" title="2. 两数相加"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="btn btn-neutral float-right" title="「力扣」第 4 题：寻找两个正序数组的中位数（困难）">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../4.%20%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%AD%A3%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="btn btn-neutral float-right" title="4. 寻找两个正序数组的中位数">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
